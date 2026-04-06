@@ -374,9 +374,10 @@
         <div class="column is-six-fifths">
           <h2 class="title is-3 has-text-centered">How We Detect Hallucinations</h2>
           <div class="content">
-            <div style="margin-top: 2em; margin-bottom: 2em;">
+            <div class="px-auto content has-text-justified" style="margin-top: 2em; margin-bottom: 2em; display: flex; justify-content: center;">
             <img id="hallucination-img" width="85%" src="images/method.png" alt="An Overview of Hallucination Detection Method">
-            <ol>
+          </div>
+          <ol>
               <li><strong style="color: #333; font-size: 1.1em;">Prefix Prompting: </strong> We use prefix prompting to obtain the next predicted token. Initially, the model is prompted with the query "Describe this image.".</li>
               <li><strong style="color: #333; font-size: 1.1em;">Logit Lens: </strong> We apply the logit lens technique to observe the layer-wise thought process of the VLM, tracking how object hypotheses evolve across layers.</li>
               <li><strong style="color: #333; font-size: 1.1em;">Feature Extraction: </strong> We extract the following features from the layer-wise thought process:
@@ -395,7 +396,6 @@
                 </ul>
               </li>
             </ol>
-          </div>
           </div>
         </div>
       </div>
@@ -564,11 +564,11 @@
 
   </tbody>
 </table>
-<div style="margin-top: 2em; margin-bottom: 2em;" class="d-flex gap-4">
+<div style="margin-top: 2em; margin-bottom: 2em;" class="d-md-flex gap-4">
 <div class="w-20">
   <p style="font-size: 1.1em; font-weight: bold; color: black;">
   Comparison of hallucination detection performance with current methods such as SVAR and MetaToken.</p></div>
-<div class="w-80 d-flex justify-content-center">
+<div class="w-80 d-md-flex justify-content-center">
           
             <img id="hallucination-img" width="85%" src="images/qualitative_examples.png" alt="Comparison of hallucination detection performance with current methods such as SVAR and MetaToken.">
           </div>
