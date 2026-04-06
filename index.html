@@ -359,7 +359,7 @@
          
           
           <div style="text-align: center; margin-top: 2em; margin-bottom: 2em;">
-            <img id="hallucination-img" width="100%" src="images/method_teaser.png" alt="An example illustrating the overthinking behavior and confounding propagation in VLMs.">
+            <img id="hallucination-img" width="85%" src="images/method_teaser.png" alt="An example illustrating the overthinking behavior and confounding propagation in VLMs.">
           </div>
         </div>
       </div>
@@ -370,11 +370,11 @@
   <section class="section"  style="background-color:#efeff081">
     <div class="container is-max-desktop">
       <!-- Method. -->
-      <div class="columns is-centered has-text-centered">
+      <div class="columns is-centered">
         <div class="column is-six-fifths">
-          <h2 class="title is-3">How We Detect Hallucinations</h2>
-          <div class="content has-text-justified">
-            <div style="text-align: center; margin-top: 2em; margin-bottom: 2em;">
+          <h2 class="title is-3 has-text-centered">How We Detect Hallucinations</h2>
+          <div class="content">
+            <div style="margin-top: 2em; margin-bottom: 2em;">
             <img id="hallucination-img" width="85%" src="images/method.png" alt="An Overview of Hallucination Detection Method">
             <ol>
               <li><strong style="color: #333; font-size: 1.1em;">Prefix Prompting: </strong> We use prefix prompting to obtain the next predicted token. Initially, the model is prompted with the query "Describe this image.".</li>
@@ -417,7 +417,7 @@
          
          <div class="table-container">
 <table class="cvpr">
-  <caption>
+  <caption style="font-size: 1.1em; font-weight: bold; color: black;">
     Object hallucination detection performance (in %) on MSCOCO dataset measured using AUC, AP and F1 across three different VLMs.
   </caption>
 
@@ -508,7 +508,7 @@
 
 <div class="table-container">
 <table class="cvpr">
-  <caption>
+  <caption style="font-size: 1.1em; font-weight: bold; color: black;">
     OOD object hallucination detection performance (in %) on AMBER dataset and LLaVA-1.5 VLM measured using AUC, AP and F1.
   </caption>
 
@@ -564,10 +564,15 @@
 
   </tbody>
 </table>
-<div style="text-align: center; margin-top: 2em; margin-bottom: 2em;">
-            <img id="hallucination-img" width="100%" src="images/qualitative_examples.png" alt="Comparison of hallucination detection performance with current methods such as SVAR and MetaToken.">
-          </div>
+<div style="margin-top: 2em; margin-bottom: 2em;" class="d-flex gap-4">
+<div class="w-20">
+  <p style="font-size: 1.1em; font-weight: bold; color: black;">
+  Comparison of hallucination detection performance with current methods such as SVAR and MetaToken.</p></div>
+<div class="w-80 d-flex justify-content-center">
           
+            <img id="hallucination-img" width="85%" src="images/qualitative_examples.png" alt="Comparison of hallucination detection performance with current methods such as SVAR and MetaToken.">
+          </div>
+          </div>
         </div>
       </div>
     </div>
