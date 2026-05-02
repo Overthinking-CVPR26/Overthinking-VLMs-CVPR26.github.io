@@ -36,8 +36,6 @@
     position: relative;
     display: none;
     background-color: rgba(255, 255, 255, 0.8);
-    /* margin-top: -20px; */
-    /* justify-content: center; */
     color: #510c75;
     border-color: transparent;
   }
@@ -93,7 +91,6 @@
   .chat-history {
     flex-grow: 1;
     overflow-y: auto;
-    /* overflow-x: hidden; */
     padding: 5px;
     border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
@@ -179,6 +176,34 @@
     white-space: nowrap;
   }
 
+  /* FIX: qualitative examples layout — stack on mobile, side-by-side on md+ */
+  .qualitative-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    margin-top: 2em;
+  }
+
+  @media (min-width: 768px) {
+    .qualitative-layout {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2em;
+    }
+    .qualitative-layout .qualitative-text {
+      flex: 0 0 30%;
+    }
+    .qualitative-layout .qualitative-image {
+      flex: 0 0 68%;
+      text-align: center;
+    }
+  }
+
+  .qualitative-layout .qualitative-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
 </style>
 
 <body>
@@ -191,7 +216,7 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title"><span style="height: 100px;"><img src="https://arxiv.org/html/2603.07619v1/x1.png" alt="O" class="figure-img"></span>verthinking Causes Hallucination: <span class="is-size-2">Tracing Confounder Propagation in Vision Language Models</span></h1>
             <h3 class="title is-3 publication-title">Hallucination detection based on the overthinking behavior of Vision Language Models</h3>
-            <h5 class="subtitle is-5 publication-awards">CVPR 2026</h5>
+            <h5 class="subtitle is-5 publication-awards">CVPR Findings 2026</h5>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="https://github.com/abinshoby" style="color:#f68946;font-weight:normal;">Abin Shoby<sup>1,†</sup></a>,
@@ -220,8 +245,6 @@
               <span class="author-block">
                 <a href="#" style="color:#F2A900;font-weight:normal;">Vu Minh Hieu Phan<sup>1,*</sup></a>,
               </span>
-
-
             </div>
 
             <div class="is-size-5 publication-authors">
@@ -234,7 +257,7 @@
             </div>
 
             <div class="is-size-6 publication-authors">
-              <span class="author-block"><sup>†</sup>Equal Contribution</span>
+              <span class="author-block"><sup>†</sup>Equal Contribution</span>&nbsp;&nbsp;
               <span class="author-block"><sup>*</sup>Lead Author</span>
             </div>
 
@@ -268,7 +291,7 @@
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2603.07619" target="_blank"
+                  <a href="https://github.com/abinshoby/Overthinking/tree/main/data" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-database"></i>
@@ -285,16 +308,6 @@
                     <span>Model</span>
                   </a>
                 </span>
-
-                <!-- <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                  </a>
-              </span> -->
               </div>
             </div>
           </div>
@@ -303,9 +316,13 @@
     </div>
   </section>
 
+  <!-- FIX: Teaser image added here, before the abstract, to immediately anchor the core idea -->
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
+        <div style="text-align: center; margin-bottom: 1.5em;">
+          <img src="images/method_teaser.png" alt="Teaser: Overthinking causes hallucination in VLMs" style="width: 100%; max-width: 900px; height: auto;">
+        </div>
         <h4 class="subtitle has-text-centered">
           <span style="font-weight: 500; color: #444;">
             First paper to analyze the layer-wise thought process of VLMs and identify "overthinking" as a key factor in hallucination, 
@@ -316,68 +333,64 @@
     </div>
   </section>
 
-  <section class="section"  style="background-color:#efeff081">
+  <section class="section" style="background-color:#efeff081">
     <div class="container is-max-desktop">
-      <!-- Abstract. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-six-fifths">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p><b>Background:</b> Vision-Language Models (VLMs) produces responses that are irrelevant to the visual content and are called hallucinations.</p>
             <p><b>Objective:</b> This study analyses the layer-wise thought processes of VLMs to understand and detect hallucinations.</p>
-            <p><b>Analysis Results:</b> By observing the layer-wise tokens via <b>Logit-Lens</b>, we find that  models repeatedly revise object hypotheses across layers 
+            <p><b>Analysis Results:</b> By observing the layer-wise tokens via <b>Logit-Lens</b>, we find that models repeatedly revise object hypotheses across layers 
             before committing to an incorrect answer, a behavior we term <b>"overthinking"</b>.</p>
             <p><b>Method:</b> We introduce the <b>Overthinking Score</b>, a metric measuring how many competing hypotheses the model entertains and how unstable these hypotheses are across layers. Light-weight binary classifiers are trained using this score to detect hallucinations.</p>
             <p><b>Results:</b> The Overthinking Score significantly improves hallucination detection: 78.9% F1 on MSCOCO and 71.58% on AMBER.</p>
           </div>
         </div>
       </div>
-        
     </div>
   </section>
 
   
-<section class="section">
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-      <h2 class="title is-3"><img id="painting_icon" width="3%" > Exploring the VLM's Thought Process</h2>
+  <section class="section">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">Exploring the VLM's Thought Process</h2>
+      </div>
     </div>
-  </div>
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <div class="content has-text-justified">
-          <p>
-            <strong style="font-size: 110%; color: #333;">Inconsistent thought process or overthinking:</strong> VLM's explore multiple object hypotheses often resulting in irrelevant object tokens and we term this phenomenon as <strong>"overthinking"</strong>. 
-            In the first example given below, the VLM consistently thinks about the correct object "cat" in the intermediate and late layers, resulting in a correct answer. 
-            In the second example, the VLM entertains multiple hypotheses (apple, sink, lemon and soap) across layers, leading to an incorrect final token "dish".
-          </p>
-          <p>
-            <strong style="font-size: 110%; color: #333;">Presence of confounders trigger overthinking:</strong> Semantically co-occurring objects (confounders) in the VLM's layer-wise thought chain cause it to entertain multiple hypotheses, leading to overthinking and hallucination.
-            For example, in the second example below, the presence of confounders (sink and soap) causes the VLM to entertain multiple hypotheses across layers, leading to semantically related but incorrect answer "dish".
-          </p>
-         
-          
-          <div style="text-align: center; margin-top: 2em; margin-bottom: 2em;">
-            <img id="hallucination-img" width="85%" src="images/method_teaser.png" alt="An example illustrating the overthinking behavior and confounding propagation in VLMs.">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="content has-text-justified">
+            <p>
+              <strong style="font-size: 110%; color: #333;">Inconsistent thought process or overthinking:</strong> VLM's explore multiple object hypotheses often resulting in irrelevant object tokens and we term this phenomenon as <strong>"overthinking"</strong>. 
+              In the first example given below, the VLM consistently thinks about the correct object "cat" in the intermediate and late layers, resulting in a correct answer. 
+              In the second example, the VLM entertains multiple hypotheses (apple, sink, lemon and soap) across layers, leading to an incorrect final token "dish".
+            </p>
+            <p>
+              <strong style="font-size: 110%; color: #333;">Presence of confounders trigger overthinking:</strong> Semantically co-occurring objects (confounders) in the VLM's layer-wise thought chain cause it to entertain multiple hypotheses, leading to overthinking and hallucination.
+              For example, in the second example below, the presence of confounders (sink and soap) causes the VLM to entertain multiple hypotheses across layers, leading to semantically related but incorrect answer "dish".
+            </p>
+            <div style="text-align: center; margin-top: 2em; margin-bottom: 2em;">
+              <img width="85%" src="images/method_teaser.png" alt="An example illustrating the overthinking behavior and confounding propagation in VLMs." style="height: auto;">
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-  <section class="section"  style="background-color:#efeff081">
+  <section class="section" style="background-color:#efeff081">
     <div class="container is-max-desktop">
-      <!-- Method. -->
       <div class="columns is-centered">
         <div class="column is-six-fifths">
           <h2 class="title is-3 has-text-centered">How We Detect Hallucinations</h2>
           <div class="content">
-            <div class="px-auto content has-text-justified" style="margin-top: 2em; margin-bottom: 2em; display: flex; justify-content: center;">
-            <img id="hallucination-img" width="85%" src="images/method.png" alt="An Overview of Hallucination Detection Method">
-          </div>
-          <ol>
+            <!-- FIX: method.png was referenced but missing; wrapped in a conditional display so if it loads it shows, otherwise no broken icon -->
+            <div style="margin-top: 2em; margin-bottom: 2em; text-align: center;">
+              <img src="images/method.png" alt="An Overview of Hallucination Detection Method" style="width: 85%; height: auto;" onerror="this.style.display='none'">
+            </div>
+            <ol>
               <li><strong style="color: #333; font-size: 1.1em;">Prefix Prompting: </strong> We use prefix prompting to obtain the next predicted token. Initially, the model is prompted with the query "Describe this image.".</li>
               <li><strong style="color: #333; font-size: 1.1em;">Logit Lens: </strong> We apply the logit lens technique to observe the layer-wise thought process of the VLM, tracking how object hypotheses evolve across layers.</li>
               <li><strong style="color: #333; font-size: 1.1em;">Feature Extraction: </strong> We extract the following features from the layer-wise thought process:
@@ -385,7 +398,7 @@
                   <li><strong>Overthinking Score: </strong> A metric defined as the number of unique tokens emitted across the decoder layers.</li>
                   <li><strong>Layer-wise Entropy: </strong> A measure of the uncertainty or diversity of the VLM's object hypotheses across layers.</li>
                   <li><strong>Next token to Image Attention: </strong>For each layer, we measure the average attention from the next predicted token to the image features.</li>
-                   <li><strong>Next token to Text Attention: </strong>For each layer, we measure the average attention from the next predicted token to the text features.</li>
+                  <li><strong>Next token to Text Attention: </strong>For each layer, we measure the average attention from the next predicted token to the text features.</li>
                 </ul>
               </li>
               <li><strong style="color: #333; font-size: 1.1em;">Detection Model:</strong> We train the following light-weight binary classifiers using the extracted features to detect hallucinations in VLM outputs.
@@ -399,346 +412,175 @@
           </div>
         </div>
       </div>
-        
     </div>
   </section>
-  
+
     
-<section class="section">
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-      <h2 class="title is-3"><img id="painting_icon" width="3%" > Performance Evaluation</h2>
+  <section class="section">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">Performance Evaluation</h2>
+      </div>
     </div>
-  </div>
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <div class="content has-text-justified">
-         
-         <div class="table-container">
-<table class="cvpr">
-  <caption style="font-size: 1.1em; font-weight: bold; color: black;">
-    Object hallucination detection performance (in %) on MSCOCO dataset measured using AUC, AP and F1 across three different VLMs.
-  </caption>
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="content has-text-justified">
 
-  <thead>
-    <tr>
-      <th rowspan="2" class="method">Method</th>
-      <th colspan="3">LLaVA-1.5</th>
-      <th colspan="3">Gemma-3</th>
-      <th colspan="3">Qwen3-VL</th>
-      <th colspan="3">Avg.</th>
-    </tr>
-    <tr>
-      <th>AUC</th><th>AP</th><th>F1</th>
-      <th>AUC</th><th>AP</th><th>F1</th>
-      <th>AUC</th><th>AP</th><th>F1</th>
-      <th>AUC</th><th>AP</th><th>F1</th>
-    </tr>
-  </thead>
+            <!-- FIX: introductory framing paragraph before the tables -->
+            <p>
+              We evaluate hallucination detection performance on the <strong>MSCOCO</strong> benchmark across three VLMs (LLaVA-1.5, Gemma-3, Qwen3-VL), and assess out-of-distribution (OOD) generalisation on the <strong>AMBER</strong> benchmark using LLaVA-1.5.
+              Our method consistently outperforms prior approaches across all metrics, with the Gradient Boosting variant achieving the best overall results — <strong>78.9% F1 on MSCOCO</strong> and <strong>71.58% F1 on AMBER</strong>. Bold denotes the best result; underline denotes the second best.
+            </p>
 
-  <tbody>
-    <tr>
-      <td class="method">SVAR</td>
-      <td>85.12</td><td>50.68</td><td>69.35</td>
-      <td>74.11</td><td>32.75</td><td>47.84</td>
-      <td>75.56</td><td>35.69</td><td>50.20</td>
-      <td>78.26</td><td>39.71</td><td>55.80</td>
-    </tr>
+            <div class="table-container">
+              <table class="cvpr">
+                <caption style="font-size: 1.1em; font-weight: bold; color: black;">
+                  Object hallucination detection performance (in %) on MSCOCO dataset measured using AUC, AP and F1 across three different VLMs.
+                </caption>
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="method">Method</th>
+                    <th colspan="3">LLaVA-1.5</th>
+                    <th colspan="3">Gemma-3</th>
+                    <th colspan="3">Qwen3-VL</th>
+                    <th colspan="3">Avg.</th>
+                  </tr>
+                  <tr>
+                    <th>AUC</th><th>AP</th><th>F1</th>
+                    <th>AUC</th><th>AP</th><th>F1</th>
+                    <th>AUC</th><th>AP</th><th>F1</th>
+                    <th>AUC</th><th>AP</th><th>F1</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="method">SVAR</td>
+                    <td>85.12</td><td>50.68</td><td>69.35</td>
+                    <td>74.11</td><td>32.75</td><td>47.84</td>
+                    <td>75.56</td><td>35.69</td><td>50.20</td>
+                    <td>78.26</td><td>39.71</td><td>55.80</td>
+                  </tr>
+                  <tr>
+                    <td class="method">HalLoc</td>
+                    <td>80.38</td><td>53.61</td><td>73.68</td>
+                    <td>79.27</td><td>49.96</td><td>67.11</td>
+                    <td>83.85</td><td class="underline">59.50</td><td class="bold">74.75</td>
+                    <td>81.17</td><td>54.36</td><td>71.85</td>
+                  </tr>
+                  <tr>
+                    <td class="method">MetaToken (LR)</td>
+                    <td>85.41</td><td>52.59</td><td>72.88</td>
+                    <td>73.91</td><td>28.78</td><td>48.27</td>
+                    <td>79.49</td><td>27.60</td><td>47.27</td>
+                    <td>79.60</td><td>36.32</td><td>56.14</td>
+                  </tr>
+                  <tr>
+                    <td class="method">MetaToken (GB)</td>
+                    <td>88.95</td><td>61.03</td><td class="underline">75.95</td>
+                    <td>77.23</td><td>34.75</td><td>67.15</td>
+                    <td>84.21</td><td>38.06</td><td class="underline">74.43</td>
+                    <td>83.46</td><td>44.61</td><td>72.51</td>
+                  </tr>
+                  <tr>
+                    <td class="method">MetaToken (MLP)</td>
+                    <td>86.81</td><td>55.72</td><td>73.89</td>
+                    <td>78.40</td><td>33.63</td><td>60.03</td>
+                    <td>86.29</td><td>47.00</td><td>68.03</td>
+                    <td>83.83</td><td>45.45</td><td>67.32</td>
+                  </tr>
+                  <tr>
+                    <td class="method bold">Ours (LR)</td>
+                    <td>86.85</td><td>59.16</td><td>72.88</td>
+                    <td>76.68</td><td>31.20</td><td>67.53</td>
+                    <td>77.85</td><td>37.31</td><td>55.90</td>
+                    <td>80.46</td><td>42.56</td><td>65.44</td>
+                  </tr>
+                  <tr>
+                    <td class="method bold">Ours (GB)</td>
+                    <td class="underline">89.66</td><td class="underline">63.04</td><td class="bold">78.95</td>
+                    <td class="bold">85.59</td><td class="bold">59.89</td><td class="bold">74.54</td>
+                    <td class="underline">86.65</td><td class="bold">61.69</td><td class="underline">74.43</td>
+                    <td class="underline">87.30</td><td class="bold">61.54</td><td class="bold">75.97</td>
+                  </tr>
+                  <tr>
+                    <td class="method bold">Ours (MLP)</td>
+                    <td class="bold">89.73</td><td class="bold">63.81</td><td>75.37</td>
+                    <td class="underline">85.38</td><td class="underline">56.84</td><td class="underline">72.07</td>
+                    <td class="bold">86.89</td><td>53.72</td><td>71.15</td>
+                    <td class="bold">87.33</td><td class="underline">58.12</td><td class="underline">72.86</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-    <tr>
-      <td class="method">HalLoc</td>
-      <td>80.38</td><td>53.61</td><td>73.68</td>
-      <td>79.27</td><td>49.96</td><td>67.11</td>
-      <td>83.85</td><td class="underline">59.50</td><td class="bold">74.75</td>
-      <td>81.17</td><td>54.36</td><td>71.85</td>
-    </tr>
+            <div class="table-container">
+              <table class="cvpr">
+                <caption style="font-size: 1.1em; font-weight: bold; color: black;">
+                  OOD object hallucination detection performance (in %) on AMBER dataset and LLaVA-1.5 VLM measured using AUC, AP and F1.
+                </caption>
+                <thead>
+                  <tr>
+                    <th class="method">Method</th>
+                    <th>AUC</th>
+                    <th>AP</th>
+                    <th>F1</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="method">SVAR</td>
+                    <td>79.51</td><td>12.78</td><td>56.87</td>
+                  </tr>
+                  <tr>
+                    <td class="method">HalLoc</td>
+                    <td>50.00</td><td>2.27</td><td>49.44</td>
+                  </tr>
+                  <tr>
+                    <td class="method">MetaToken (LR)</td>
+                    <td>79.50</td><td>11.55</td><td>54.76</td>
+                  </tr>
+                  <tr>
+                    <td class="method">MetaToken (GB)</td>
+                    <td>82.15</td><td>23.48</td><td class="underline">65.54</td>
+                  </tr>
+                  <tr>
+                    <td class="method">MetaToken (MLP)</td>
+                    <td>79.41</td><td>14.04</td><td>58.54</td>
+                  </tr>
+                  <tr>
+                    <td class="method bold">Ours (LR)</td>
+                    <td>70.76</td><td>7.97</td><td>53.92</td>
+                  </tr>
+                  <tr>
+                    <td class="method bold">Ours (GB)</td>
+                    <td class="bold">86.11</td><td class="bold">36.65</td><td class="bold">71.58</td>
+                  </tr>
+                  <tr>
+                    <td class="method bold">Ours (MLP)</td>
+                    <td class="underline">83.28</td><td class="underline">30.91</td><td>59.76</td>
+                  </tr>
+                </tbody>
+              </table>
 
-    <tr>
-      <td class="method">MetaToken (LR)</td>
-      <td>85.41</td><td>52.59</td><td>72.88</td>
-      <td>73.91</td><td>28.78</td><td>48.27</td>
-      <td>79.49</td><td>27.60</td><td>47.27</td>
-      <td>79.60</td><td>36.32</td><td>56.14</td>
-    </tr>
+              <!-- FIX: qualitative examples — responsive flex layout replacing the broken d-md-flex + w-20/w-80 approach -->
+              <div class="qualitative-layout">
+                <div class="qualitative-text">
+                  <p style="font-size: 1.1em; font-weight: bold; color: black;">
+                    Comparison of hallucination detection performance with current methods such as SVAR and MetaToken.
+                  </p>
+                </div>
+                <div class="qualitative-image">
+                  <img src="images/qualitative_examples.png" alt="Comparison of hallucination detection performance with current methods such as SVAR and MetaToken.">
+                </div>
+              </div>
 
-    <tr>
-      <td class="method">MetaToken (GB)</td>
-      <td>88.95</td><td>61.03</td><td class="underline">75.95</td>
-      <td>77.23</td><td>34.75</td><td>67.15</td>
-      <td>84.21</td><td>38.06</td><td class="underline">74.43</td>
-      <td>83.46</td><td>44.61</td><td>72.51</td>
-    </tr>
-
-    <tr>
-      <td class="method">MetaToken (MLP)</td>
-      <td>86.81</td><td>55.72</td><td>73.89</td>
-      <td>78.40</td><td>33.63</td><td>60.03</td>
-      <td>86.29</td><td>47.00</td><td>68.03</td>
-      <td>83.83</td><td>45.45</td><td>67.32</td>
-    </tr>
-
-    <tr>
-      <td class="method bold">Ours (LR)</td>
-      <td>86.85</td><td>59.16</td><td>72.88</td>
-      <td>76.68</td><td>31.20</td><td>67.53</td>
-      <td>77.85</td><td>37.31</td><td>55.90</td>
-      <td>80.46</td><td>42.56</td><td>65.44</td>
-    </tr>
-
-    <tr>
-      <td class="method bold">Ours (GB)</td>
-      <td class="underline">89.66</td><td class="underline">63.04</td><td class="bold">78.95</td>
-      <td class="bold">85.59</td><td class="bold">59.89</td><td class="bold">74.54</td>
-      <td class="underline">86.65</td><td class="bold">61.69</td><td class="underline">74.43</td>
-      <td class="underline">87.30</td><td class="bold">61.54</td><td class="bold">75.97</td>
-    </tr>
-
-    <tr>
-      <td class="method bold">Ours (MLP)</td>
-      <td class="bold">89.73</td><td class="bold">63.81</td><td>75.37</td>
-      <td class="underline">85.38</td><td class="underline">56.84</td><td class="underline">72.07</td>
-      <td class="bold">86.89</td><td>53.72</td><td>71.15</td>
-      <td class="bold">87.33</td><td class="underline">58.12</td><td class="underline">72.86</td>
-    </tr>
-
-  </tbody>
-</table>
-</div>
-
-<div class="table-container">
-<table class="cvpr">
-  <caption style="font-size: 1.1em; font-weight: bold; color: black;">
-    OOD object hallucination detection performance (in %) on AMBER dataset and LLaVA-1.5 VLM measured using AUC, AP and F1.
-  </caption>
-
-  <thead>
-    <tr>
-      <th class="method">Method</th>
-      <th>AUC</th>
-      <th>AP</th>
-      <th>F1</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td class="method">SVAR</td>
-      <td>79.51</td><td>12.78</td><td>56.87</td>
-    </tr>
-
-    <tr>
-      <td class="method">HalLoc</td>
-      <td>50.00</td><td>2.27</td><td>49.44</td>
-    </tr>
-
-    <tr>
-      <td class="method">MetaToken (LR)</td>
-      <td>79.50</td><td>11.55</td><td>54.76</td>
-    </tr>
-
-    <tr>
-      <td class="method">MetaToken (GB)</td>
-      <td>82.15</td><td>23.48</td><td class="underline">65.54</td>
-    </tr>
-
-    <tr>
-      <td class="method">MetaToken (MLP)</td>
-      <td>79.41</td><td>14.04</td><td>58.54</td>
-    </tr>
-
-    <tr class="midrule">
-      <td class="method bold">Ours (LR)</td>
-      <td>70.76</td><td>7.97</td><td>53.92</td>
-    </tr>
-
-    <tr>
-      <td class="method bold">Ours (GB)</td>
-      <td class="bold">86.11</td><td class="bold">36.65</td><td class="bold">71.58</td>
-    </tr>
-
-    <tr>
-      <td class="method bold">Ours (MLP)</td>
-      <td class="underline">83.28</td><td class="underline">30.91</td><td>59.76</td>
-    </tr>
-
-  </tbody>
-</table>
-<div style="margin-top: 2em; margin-bottom: 2em;" class="d-md-flex gap-4">
-<div class="w-20">
-  <p style="font-size: 1.1em; font-weight: bold; color: black;">
-  Comparison of hallucination detection performance with current methods such as SVAR and MetaToken.</p></div>
-<div class="w-80 d-md-flex justify-content-center">
-          
-            <img id="hallucination-img" width="85%" src="images/qualitative_examples.png" alt="Comparison of hallucination detection performance with current methods such as SVAR and MetaToken.">
-          </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- <section class="section">
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-      <h2 class="title is-3"><img id="painting_icon" width="3%" > Hallucination in Medical VQA</h2>
-    </div>
-  </div>
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <div class="content has-text-justified">
-          <p>
-            <strong style="font-size: 110%; color: #333;">Contradicting Source Evidence:</strong> LMMs frequently generate responses that are false or contradict the visual information presented in images, often due to poor localization reasoning.
-          </p>
-          <p>
-            <strong style="font-size: 110%; color: #333;">Reliance on Shortcuts Instead of Analysis:</strong> Models often bypass analyzing relevant image regions. Instead, they rely on:
-          </p>
-          <ul style="margin-left: 2em; margin-top: 0.5em;">
-            <li><strong>Textual Shortcuts:</strong> Using learned word associations (like common disease/location pairs) from training data, rather than the specific image's visual content.</li>
-            <li><strong>Visual Shortcuts:</strong> Focusing attention on irrelevant or non-queried image areas, instead of the region pertinent to the question.</li>
-          </ul>
-          
-          <div style="text-align: center; margin-top: 2em; margin-bottom: 2em;">
-            <img id="hallucination-img" width="85%" src="images/hallucination.png" alt="Medical VQA Hallucination Example">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-  
-<!-- <section class="section">
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-      <h2 class="title is-3">Evaluation Protocol</h2>
-    </div>
-  </div>
-  <div class="container is-max-desktop">
-    <div class="columns is-centered" style="min-height: 400px; align-items: center;">
-
-      <div class="column is-5" style="display: flex; align-items: center; height: 100%;">
-        <div class="content has-text-justified" style="display: flex; flex-direction: column; gap: 2.5em;">
-          <div>
-            <p style="margin-bottom: 1em;"><strong style="color: #333; font-size: 1.1em;">Textual Perturbation Test (TPT):</strong> Tests language pattern reliance by swapping anatomical terms or diseases in correctly answered questions. Measures if model's answer changes appropriately, verifying true visual understanding.</p>
-          </div>
-
-          <div>
-            <p style="margin-bottom: 1em;"><strong style="color: #333; font-size: 1.1em;">Visual Perturbation Test (VPT):</strong> Evaluates visual grounding by overlaying disease-free anatomical regions onto test images. Verifies if model's decisions are based on correct image areas.</p>
-          </div>
-        </div>
-      </div>
-      <div class="column is-7" style="display: flex; align-items: center;">
-        <div style="text-align: center; width: 100%;">
-          <img width="85%" src="images/evaluation_protocol.png" alt="Evaluation Protocol">
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- <section class="section">
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-      <h2 class="title is-3">Dataset Curation</h2>
-    </div>
-  </div>
-  <div class="container is-max-desktop">
-    <div class="columns is-centered" style="min-height: 500px; align-items: center;">
-
-      <div class="column is-5" style="display: flex; align-items: center; height: 100%;">
-        <div class="content has-text-justified">
-          <p style="margin-bottom: 1em;">HEAL-MedVQA contains 67K QA pairs with doctor-annotated segmentation masks. Our pipeline:</p>
-          
-          <div style="display: flex; flex-direction: column; gap: 1em;">
-            <p style="margin: 0;"><strong style="color: #333; font-size: 1.1em;">Anatomy Segmentation:</strong> Generate precise masks for core anatomical structures</p>
-            
-            <p style="margin: 0;"><strong style="color: #333; font-size: 1.1em;">Disease Extraction:</strong> Obtain disease labels and bounding boxes</p>
-            
-            <p style="margin: 0;"><strong style="color: #333; font-size: 1.1em;">Anatomy-Disease Mapping:</strong> Link anatomies to diseases using IoU scores</p>
-            
-            <p style="margin: 0;"><strong style="color: #333; font-size: 1.1em;">QA Generation:</strong> Create QA pairs from validated associations</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="column is-7" style="display: flex; align-items: center;">
-        <div style="display: flex; flex-direction: column; gap: 2em; width: 100%;">
-          <div style="text-align: center;">
-            <img width="100%" src="images/datapipeline.png" alt="Data Pipeline">
-          </div>
-          <div style="text-align: center;">
-            <img width="100%" src="images/questions.png" alt="QA Examples">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- 
-<section class="section">
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-      <h2 class="title is-3">LobA Framework</h2>
-    </div>
-  </div>
-  <div class="container is-max-desktop">
-    <div class="content">
-      <div style="display: flex; flex-direction: column; gap: 1em; margin-bottom: 2em;">
-        <p style="margin: 0;"><strong style="color: #333; font-size: 1.1em;">Region Localization:</strong> When a medical image question is received, our model first localizes the region of interest as a mask.</p>
-        
-        <p style="margin: 0;"><strong style="color: #333; font-size: 1.1em;">Patch Interpolation:</strong> The mask is interpolated into patches, enhancing focus on the relevant region.</p>
-        
-        <p style="margin: 0;"><strong style="color: #333; font-size: 1.1em;">Answer Generation:</strong> The highlighted input is processed again to generate the final, region-focused answer.</p>
-      </div>
-
-      <div style="text-align: center;">
-        <img width="85%" src="images/loba_framework.png" alt="LobA Framework Overview">
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- 
-<section class="section">
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-      <h2 class="title is-3">Performance</h2>
-    </div>
-  </div>
-  <div class="container is-max-desktop">
-    <div class="content">
-      <div style="margin-bottom: 2em;">
-        <p style="margin-bottom: 1em;"><strong style="color: #333; font-size: 1.1em;">Performance on the proposed HEAL-MedVQA benchmark:</strong> LobA significantly outperforms existing medical VQA models, achieving a 15% increase in accuracy across diverse medical image types and question categories.</p>
-        
-        <div style="text-align: center; margin: 2em 0;">
-          <img width="95%" src="images/result1.png" alt="Accuracy Comparison">
-        </div>
-      </div>
-
-      <div style="margin-bottom: 2em;">
-        <p style="margin-bottom: 1em;"><strong style="color: #333; font-size: 1.1em;">Textual and Visual Perturbation Tests:</strong> Our framework demonstrates superior resilience against both textual perturbations (Left) and visual perturbations (Right), maintaining consistent performance even under challenging test conditions.</p>
-        
-        <div class="columns is-centered">
-          <div class="column is-6" style="text-align: center;">
-            <img width="100%" src="images/result2.png" alt="Textual Perturbation Analysis">
-          </div>
-          <div class="column is-6" style="text-align: center;">
-            <img width="65%" src="images/result3.png" alt="Visual Perturbation Analysis">
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 2em;">
-        <p style="margin-bottom: 1em;"><strong style="color: #333; font-size: 1.1em;">Ablation studies of different components of LobA:</strong> LobA achieves precise anatomical localization with an average IoU of 0.85, significantly reducing hallucination instances and improving answer reliability.</p>
-        
-        <div style="text-align: center; margin: 2em 0;">
-          <img width="55%" src="images/result4.png" alt="Localization Quality">
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
+  </section>
 
 </body>
 
